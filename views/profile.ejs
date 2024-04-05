@@ -1,0 +1,56 @@
+<% include ./partials/header.ejs %>
+<div class="profile w-full h-screen bg-zinc-700 text-white px-3 pt-1">
+  <form id="submitform" hidden action="/submitform" method="post" enctype="multipart/form-data">
+    <input type="file" name="image">   
+  </form>
+  <div
+    class="profiledets w-full flex justify-center items-center flex-col mt-[.5vw]"
+  >
+    <div class="relative">
+      <span id="edit_icon"
+        class="w-8 absolute bottom-0 right-0 h-8 bg-red-200 rounded-full flex items-center justify-center cursor-pointer"
+      >
+        <i class="ri-pencil-line"></i>
+      </span>
+
+      <div class="dp h-[25vh] w-[25vh] rounded-full bg-white overflow-hidden">
+        <img class="object-cover h-[100%] w-[100%] object-center" src="/images/uploads/<%= user.dp %>" alt="">
+      </div>
+    </div>
+    <h1 class="name text-1xl text-semibold mt-1 text-center"><%= user.fullName %></h1>
+    <h4 class="text-sm text-center"><%= user.username %></h4>
+    <a
+      href="/edit"
+      class="text-sm font-semibold mt-2 text-center py-2 px-4 bg-zinc-600 rounded-full flex items-center justify-center text-zinc-200 cursor-pointer"
+    >
+      Edit
+    </a>
+    <a href="/uplodpost" class="py-2 px-4 bg-red-800 font-semibold text-white rounded-lg mt-3">Add new post</a>
+  </div>
+  <div class="cards flex flex-wrap gap-10 px-10 mt-2">
+    <div class="card">
+        <div class="w-52 h-40 bg-zinc-200 rounded-lg overflow-hidden">
+         <img class="w-[100%] h-[100%] object-cover" src="/images/uploads/<%= user?.posts[0]?.image %>" alt="">
+        </div>
+        <a href="/show/posts" class=" inline-block text-xl font-semibold mt-3">Your uploded pins</a>
+        <h5 class="text-sm font-semibold"> <%=  user.posts.length  %>  pins</h5>
+      
+      
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelector('#edit_icon').addEventListener('click' , ()=>{
+    document.querySelector('#submitform input').click()
+  })
+
+  document.querySelector('#submitform input').addEventListener('change', ()=>{
+    document.querySelector('#submitform').submit()
+  })
+
+
+
+</script>
+
+<% include ./partials/footer.ejs %>

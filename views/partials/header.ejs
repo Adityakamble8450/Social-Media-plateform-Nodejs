@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Media</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css"
+    rel="stylesheet"
+
+/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+<link rel="stylesheet" href="/stylesheets/feed.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+
+</head>
+<body>
+  <div class="main">
+  <% if (nav === true){ %>
+    <nav class="w-full px-10 py-3 flex justify-between  bg-zinc-800 text-white items-center">
+      <a href="/profile"><h3 class="font-bold text-red-600 text-xl leading-none cursor-pointer">MySocialApp</h3></a>
+      <!-- <input type="search"> -->
+      <div class="flex gap-10 items-center">
+        <a class="text-xl font-bold " href="/search"><i class="ri-search-line"></i></a>
+        <a href="/profile">Profile</a>
+        <a href="/feed">Feed</a>
+        <a class="py-2 px-4 font-semibold bg-red-600 rounded" href="/logout">Logout</a>
+
+      </div>
+
+
+    </nav>
+
+ <% }  %>

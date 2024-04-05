@@ -1,0 +1,52 @@
+<% include ./partials/header.ejs %>
+
+<div class="w-full h-screen flex justify-center items-center bg-zinc-700 gap-10  ">
+    <div class="w-[40%] h-[70%] rounded-lg bg-sky-200 overflow-hidden">
+        <img class="h-full w-full object-cover object-center" src="/images/uploads/<%= selectedPost.image %>" alt="Full Image">
+
+       
+    </div>
+    <h2v class="text-white font-semiblod text-[2vw]"><%= selectedPost.title %> </h2v>
+
+     <!-- Add a delete button with a data-post-id attribute -->
+     <button class="delete-button text-white py-2 px-4 rounded-lg bg-red-600 font-semiblod" data-post-id="<%= selectedPost._id %>">Delete</button>
+  </div>
+
+    </div>
+
+
+
+</div>
+
+
+<script>
+    // Add an event listener to handle delete button clicks
+    document.addEventListener('click', async function (event) {
+      if (event.target.classList.contains('delete-button')) {
+        const postId = event.target.dataset.postId;
+  
+        // Make a DELETE request to your server endpoint
+        try {
+          const response = await fetch(`/delete/post/${postId}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+  
+          if (response.ok) {
+            // Update the UI or navigate to a different page as needed
+            console.log('Post deleted successfully');
+          } else {
+            const errorMessage = await response.text();
+            console.error(`Error deleting post: ${errorMessage}`);
+          }
+        } catch (error) {
+          console.error('Error deleting post:', error);
+        }
+      }
+    });
+  </script>
+
+<% include ./partials/footer.ejs %>
+ 
